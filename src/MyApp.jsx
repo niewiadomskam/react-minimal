@@ -1,11 +1,12 @@
 import React from 'react'
 import AppTitle from './AppTitle'
-import { randomFill } from 'crypto';
+import SquareRoot from './SquareRoot'
 
 const generateArray = (n) => [...Array(n+1).keys()].filter(x=>x>0); 
 const generateRandomArray =(n) => [...Array(n).keys()].map(() => Math.round(Math.random() * 24)+1);
 
-const exampleArray = [2, 56, 23, 88, 17, 4]
+const exampleArray = [2, 56, 23, 88, 17, 4];
+const exampleArray2 = [2, 5, 8, 10];
 
 
 const App = () => (
@@ -24,6 +25,10 @@ const App = () => (
   <p>Printing from example array ony values greater than 15</p>
   <lu>
     {exampleArray.filter(x=>x>15).map(item => <li>{item}</li>)}
+  </lu>
+  <p>Printing square root of first array</p>
+  <lu>
+    {SquareRoot(exampleArray2).map(item=><li>{item}</li>)}
   </lu>
   </div>
 )
