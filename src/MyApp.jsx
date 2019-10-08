@@ -5,6 +5,8 @@ import { randomFill } from 'crypto';
 const generateArray = (n) => [...Array(n+1).keys()].filter(x=>x>0); 
 const generateRandomArray =(n) => [...Array(n).keys()].map(() => Math.round(Math.random() * 24)+1);
 
+const exampleArray = [2, 56, 23, 88, 17, 4]
+
 
 const App = () => (
   <div>
@@ -18,6 +20,10 @@ const App = () => (
   <p>Array with random numbers from 1 to 25</p>
   <lu>
     {generateRandomArray(5).map(item=><li>{item}</li>)}
+  </lu>
+  <p>Printing from example array ony values greater than 15</p>
+  <lu>
+    {exampleArray.filter(x=>x>15).map(item => <li>{item}</li>)}
   </lu>
   </div>
 )
