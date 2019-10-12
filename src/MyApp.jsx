@@ -1,12 +1,75 @@
 import React from 'react'
 import AppTitle from './AppTitle'
 import SquareRoot from './SquareRoot'
+import AllStudentsButton from './AllStudentsButton'
+import SortStudentsButton from './SortStudentsButton'
+import OldStudentsButton from './OldStudentsButton'
 
 const generateArray = (n) => [...Array(n+1).keys()].filter(x=>x>0); 
 const generateRandomArray =(n) => [...Array(n).keys()].map(() => Math.round(Math.random() * 24)+1);
 
 const exampleArray = [2, 56, 23, 88, 17, 4];
 const exampleArray2 = [2, 5, 8, 10];
+const studentData = [
+  {
+    "teacherName": "Jan Nowak",
+    "teacherAge": 36,
+    "active": true,
+    "students": [
+      {
+        "name": "Maciej Janosz",
+        "age": 12
+      },
+      {
+        "name": "Wojciech Kowalski",
+        "age": 15
+      },
+      {
+        "name": "Wioletta PoznaĹska",
+        "age": 1000000
+      }
+    ]
+  },
+  {
+    "teacherName": "Mariusz Flasinski",
+    "teacherAge": 56,
+    "active": true,
+    "students": [
+      {
+        "name": "Jan Kot",
+        "age": 12
+      },
+      {
+        "name": "Jan Ziobro",
+        "age": 15
+      },
+      {
+        "name": "Adam Malysz",
+        "age": 41
+      }
+    ]
+  },
+  {
+    "teacherName": "Wojciech Kuzak",
+    "teacherAge": 44,
+    "active": false,
+    "students": [
+      {
+        "name": "Janina Wronska",
+        "age": 22
+      },
+      {
+        "name": "John Dover",
+        "age": 7
+      },
+      {
+        "name": "Emil Petterson",
+        "age": 46
+      }
+    ]
+  }
+];
+
 
 
 const App = () => (
@@ -30,6 +93,16 @@ const App = () => (
   <lu>
     {SquareRoot(exampleArray2).map(item=><li>{item}</li>)}
   </lu>
+  <AllStudentsButton data={studentData.map(item=>item.students)} />
+  <SortStudentsButton data ={Object.keys(studentData).reduce(function(arr, key) {
+    return arr.concat(studentData[key].students);
+}, [])} />
+  <OldStudentsButton data ={Object.keys(studentData).reduce(function(arr, key) {
+    if(studentData[key].active == true)
+    return arr.concat(studentData[key].students);
+    else
+    return arr;
+}, [])} />
   </div>
 )
 
