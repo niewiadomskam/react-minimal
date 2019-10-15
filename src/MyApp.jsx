@@ -81,23 +81,34 @@ class App extends React.Component{
 
     this.state={
       firstNumber: 0 ,
-      secondNumber: 0
+      secondNumber: 0 ,
+      array: []
     }
   }
 
   firstNumberChange(event)
   {
-    this.setState({firstNumber:event.target.value});
+    const newArray = this.generateLimitedArray(event.target.value,this.state.secondNumber);
+    this.setState({firstNumber:event.target.value , array: newArray});
 
   }
 
 
 secondNumberChange(event)
 {
-  this.setState({secondNumber:event.target.value});
-
+  const newArray = this.generateLimitedArray(this.state.firstNumber, event.target.value);
+  this.setState({secondNumber:event.target.value, array : newArray});
 }
 
+generateLimitedArray(a,b)
+{
+  if(a<b && a>0)
+  {
+  return [...Array(b-a +1).keys()].map(item => item+parseInt(a));
+  }
+  else
+  return [];
+}
 
   render(){
     return(
@@ -136,10 +147,12 @@ secondNumberChange(event)
      Enter two numbers:
      <div class="clearfix" />
      <input type="number" value={this.state.firstnumber} onChange={this.firstNumberChange} />
-     <div class="clearfix" margin ="5"/>
+     <div class="clearfix"/>
      <input type="number" value={this.state.secondNumber} onChange={this.secondNumberChange} />
      <div>
      <label>Number changed: a= {this.state.firstNumber} , b= {this.state.secondNumber}</label>
+     <div class="clearfix" />
+     <div> [ {this.state.array.map(item=> <label> {item} </label>)} ]</div>
      </div>
   </label> 
  </form>
