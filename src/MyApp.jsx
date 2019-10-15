@@ -4,6 +4,7 @@ import SquareRoot from './SquareRoot'
 import AllStudentsButton from './AllStudentsButton'
 import SortStudentsButton from './SortStudentsButton'
 import OldStudentsButton from './OldStudentsButton'
+import { render } from 'react-dom'
 
 const generateArray = (n) => [...Array(n+1).keys()].filter(x=>x>0); 
 const generateRandomArray =(n) => [...Array(n).keys()].map(() => Math.round(Math.random() * 24)+1);
@@ -71,9 +72,36 @@ const studentData = [
 ];
 
 
+class App extends React.Component{
+  constructor()
+  {
+    super();
+     this.firstNumberChange = this.firstNumberChange.bind(this);
+     this.secondNumberChange = this.secondNumberChange.bind(this);
 
-const App = () => (
-  <div>
+    this.state={
+      firstNumber: 0 ,
+      secondNumber: 0
+    }
+  }
+
+  firstNumberChange(event)
+  {
+    this.setState({firstNumber:event.target.value});
+
+  }
+
+
+secondNumberChange(event)
+{
+  this.setState({secondNumber:event.target.value});
+
+}
+
+
+  render(){
+    return(
+<div>
     <AppTitle name="Marta" />
   <h1>Minimal React - niewiadomskam 8b62f7d263cbf41d63725f2dfe718be119fe2917</h1>  
   <p>Bundle size: 57 bytes, Load time of the bundle: 35 ms, Last commit SHA1: f6a9f42152fefba5a78e9929632b278758dcdb70</p>
@@ -103,7 +131,21 @@ const App = () => (
     else
     return arr;
 }, [])} />
+ <form>
+    <label>
+     Enter two numbers:
+     <div class="clearfix" />
+     <input type="number" value={this.state.firstnumber} onChange={this.firstNumberChange} />
+     <div class="clearfix" margin ="5"/>
+     <input type="number" value={this.state.secondNumber} onChange={this.secondNumberChange} />
+     <div>
+     <label>Number changed: a= {this.state.firstNumber} , b= {this.state.secondNumber}</label>
+     </div>
+  </label> 
+ </form>
   </div>
-)
+    );
+  }
+}
 
 export default App
