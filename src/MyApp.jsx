@@ -78,12 +78,19 @@ class App extends React.Component{
     super();
      this.firstNumberChange = this.firstNumberChange.bind(this);
      this.secondNumberChange = this.secondNumberChange.bind(this);
+     this.i=0;
 
     this.state={
       firstNumber: 0 ,
       secondNumber: 0 ,
-      array: []
+      array: [],
+      i :0
     }
+  }
+  componentDidUpdate()
+  {
+    console.timeEnd("render - "+this.i+" - ");
+    return this.i++;
   }
 
   firstNumberChange(event)
@@ -109,8 +116,8 @@ generateLimitedArray(a,b)
   else
   return [];
 }
-
   render(){
+    console.time("render - "+this.i+" - ");
     return(
 <div>
     <AppTitle name="Marta" />
@@ -145,13 +152,13 @@ generateLimitedArray(a,b)
  <form>
     <label>
      Enter two numbers:
-     <div class="clearfix" />
+     <div className="clearfix" />
      <input type="number" value={this.state.firstnumber} onChange={this.firstNumberChange} />
-     <div class="clearfix"/>
+     <div className="clearfix"/>
      <input type="number" value={this.state.secondNumber} onChange={this.secondNumberChange} />
      <div>
      <label>Number changed: a= {this.state.firstNumber} , b= {this.state.secondNumber}</label>
-     <div class="clearfix" />
+     <div className="clearfix" />
      <div> [ {this.state.array.map(item=> <label> {item} </label>)} ]</div>
      </div>
   </label> 

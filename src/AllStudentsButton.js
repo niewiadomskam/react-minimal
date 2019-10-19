@@ -3,11 +3,10 @@ import { render } from 'react-dom'
 
 function displayALLStudents(data)
 {
-    render(
+    return(
     <lu>
     {data.map(item => item.map(student=> <li>{student.name}</li>))}
     </lu>
-    , document.getElementById("allStudents")
 
     )
 }
